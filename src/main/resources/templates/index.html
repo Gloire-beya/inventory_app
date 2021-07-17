@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <title>Inventory App</title>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Welcome to inventory App</h1></div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/categories}">List Categories</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/categories/new}">Creat Category</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/products}">List Products</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/products/new}">Creat Product</a>
+    </div>
+</div>
+</body>
+</html>
