@@ -1,34 +1,23 @@
 package com.glory.inventory.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Category {
-
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(
+            length = 45,
             nullable = false,
-            unique = true,
-            length = 45
+            unique = true
     )
     private String name;
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "brand_id")
-    private Brand brand;
-
-    public Category(){
-
-    }
-
-    public Category(Integer id) {
-        this.id = id;
-    }
-
-    public Category(String name) {
-        this.name = name;
-    }
+    private List<Category> categories = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -46,16 +35,11 @@ public class Category {
         this.name = name;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    @Override
-    public String toString() {
-        return name;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }

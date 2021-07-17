@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     @GetMapping("products/edit/{id}")
-    public String showEditProductForm(@PathVariable("id") Integer id, Model model) {
+    public String showEditProductForm(@PathVariable Integer id, Model model) {
         Product product = productRepository.findById(id).get();
         List<Category> categoryList = categoryRepository.findAll();
         model.addAttribute("categoryList", categoryList);
