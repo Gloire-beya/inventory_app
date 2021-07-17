@@ -16,6 +16,7 @@
                     <th>Name</th>
                     <th>Price</th>
                     <th>Category</th>
+                    <th>Details</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -26,6 +27,7 @@
                         <td>[[${product.name}]]</td>
                         <td>[[${product.price}]]</td>
                         <td>[[${product.category.name}]]</td>
+                        <td>[[${product.productDetails}]]</td>
                         <td>
                             <a th:href="@{'products/edit/' + ${product.id}}">Edit</a>
                             &nbsp;

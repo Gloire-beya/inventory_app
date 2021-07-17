@@ -1,6 +1,8 @@
 package com.glory.inventory.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -14,9 +16,24 @@ public class Product {
     )
     private String name;
     private float price;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL
+    )
+    private List<ProductDetails> productDetails = new ArrayList<>();
+
+    public List<ProductDetails> getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(List<ProductDetails> productDetails) {
+        this.productDetails = productDetails;
+    }
 
     public Integer getId() {
         return id;
@@ -48,5 +65,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void addDetails(String name, String value){
+        this.productDetails.add(new ProductDetails(name, value, this));
+    }
+
+    public void setDetails(Integer id, String name, String value){
+        this.productDetails.add(new ProductDetails(id, name, value, this));
     }
 }

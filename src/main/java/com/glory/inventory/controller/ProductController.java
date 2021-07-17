@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +41,20 @@ public class ProductController {
     }
 
     @PostMapping("/products/save")
-    public String saveProduct(Product product) {
+    public String saveProduct(Product product, HttpServletRequest request) {
+        String[] detailIDS = request.getParameterValues("detailID");
+        String[] detailNames = request.getParameterValues("detailName");
+        String[] detailValues = request.getParameterValues("detailValue");
+
+        for (int i = 0; i < detailNames.length; i++){
+            if (detailIDS != null && detailIDS.length > 0){
+                product.setDetails(Integer.valueOf(detailIDS[i]), detailNames[i], detailValues[i]);
+            }else{
+                product.addDetails(detailNames[i], detailValues[i]);
+            }
+
+        }
+
         productRepository.save(product);
         return "redirect:/products";
     }
