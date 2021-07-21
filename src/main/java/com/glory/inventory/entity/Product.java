@@ -1,10 +1,13 @@
 package com.glory.inventory.entity;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@ToString
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,11 +70,11 @@ public class Product {
         this.category = category;
     }
 
-    public void addDetails(String name, String value){
+    public void addDetails(String name, String value) {
         this.productDetails.add(new ProductDetails(name, value, this));
     }
 
-    public void setDetails(Integer id, String name, String value){
+    public void setDetails(Integer id, String name, String value) {
         this.productDetails.add(new ProductDetails(id, name, value, this));
     }
 }
