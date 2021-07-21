@@ -54,7 +54,6 @@ public class ProductController {
             }
 
         }
-
         productRepository.save(product);
         return "redirect:/products";
     }
